@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+#board{
+    margin: 0 auto;
+    width: 700px;
+    background-color: yellow;
+}
+.col{
+    display: inline-block;
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 5px;
+}
+.white{
+    background-color: white;
+}
+
+.grey{
+    background-color: grey;
+}
+.black{
+    background-color: black;
+}
+
