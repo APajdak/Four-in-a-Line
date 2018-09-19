@@ -63,14 +63,12 @@ class fourInALine{
                 if(lastCell){
                     lastCell.classList.add("black");
                     lastCell.classList.remove("white");
+                    socket.emit('hello', {row: this.dataset.row, col: this.dataset.col});
                 } 
             });
         }
     }
-
-
-
 }
-let game =new fourInALine();
+new fourInALine();
 
 
