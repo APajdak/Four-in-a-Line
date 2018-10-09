@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(publicPath));
 
-
+let users = new Users;
 
 app.get('/', (req, res)=>{
     res.render('login.hbs');
