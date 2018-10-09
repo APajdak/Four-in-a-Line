@@ -1,6 +1,12 @@
 *{
     box-sizing: border-box;
 }
+body{
+    background-color: #ced5ff;
+    border: 1px solid black;
+    height: 100vh;
+}
+
 #board{
     margin: 0 auto;
     width: 700px;
@@ -24,4 +30,3 @@
 .black{
     background-color: black;
 }
-

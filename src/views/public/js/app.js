@@ -69,6 +69,15 @@ class fourInALine{
         }
     }
 }
-new fourInALine();
+let game = new fourInALine();
+
+socket.on('siema', (data)=>{
+    console.log("hey");
+    console.log(data);
+})
 
 
+window.addEventListener('beforeunload', (e)=>{
+    e.preventDefault();
+    e.returnValue = '';
+})
