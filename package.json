@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/server/server.js",
     "start-watch": "nodemon --exec 'npm start'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/server/**/*.test.js"
   },
   "author": "Andrzej",
   "license": "ISC",
@@ -15,5 +15,9 @@
     "express": "^4.16.2",
     "hbs": "^4.0.1",
     "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "expect": "^23.6.0",
+    "mocha": "^5.2.0"
   }
 }
