@@ -1,0 +1,27 @@
+#bgBoard{
+    margin: 3vh auto;
+    width: 98rem;
+    background-color: #0026cf;
+    z-index: -1;
+    height: 100%;
+    filter: blur(2px)
+}
+.cell{
+    display: inline-block;
+    height: 13rem;
+    width: 13rem;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0.5rem;
+}
+.white{
+    background-color: white;
+}
+
+.coin-yellow{
+    @include coin('yellow')
+}
+.coin-red{
+    @include coin('red')
+}
+

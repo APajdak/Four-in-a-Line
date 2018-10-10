@@ -7,14 +7,14 @@ const bodyParser = require('body-parser');
 const {Users} = require('./utils/users');
 
 const viewPath = path.join(__dirname, '/../views')
-const publicPath = path.join(__dirname, '/../views/public')
+const publicPath = path.join(__dirname, '/../public')
 const port = 3000;
 
 let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 
-hbs.registerPartials(__dirname + './../views/partials');
+hbs.registerPartials(viewPath + '/partials');
 app.set('views', viewPath);
 app.set('view engine', hbs);
 app.use(bodyParser.json());

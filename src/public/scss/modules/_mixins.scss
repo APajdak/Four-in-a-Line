@@ -1,0 +1,9 @@
+@mixin coin($string) {
+    background-image: url('./../img/#{$string}-coin.png');
+    background-color: $string;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 13rem;
+    width: 13rem;
+}

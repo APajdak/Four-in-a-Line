@@ -1,0 +1,71 @@
+.login{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.6rem;
+    border: 0.2rem solid black;
+    background-color: white;
+    opacity: 0.89;
+    width: 40rem;
+    height: 28rem;
+    margin: 40vh auto 0 auto;
+    position: fixed;
+    top: -5rem;
+    left: 40%;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    .wrapper{
+        width: 60%;
+        height: 100%;
+        margin: 2rem auto 0 auto;
+        h1{
+            margin-top: 2em;
+            font-size: 3rem;
+            text-align: center;
+            
+        }
+        .logo{
+            display: block;
+            position: absolute;
+            width: 30rem;
+            height: 4rem;
+            background: linear-gradient(to right, colors(primary), colors(secondary));
+            left: calc(40rem/2 - 30rem/2);
+            top: -2rem;
+            font-size: 3rem;
+            color: white;
+            text-align: center;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            border: 2px solid black;
+            line-height: 4rem;
+        }
+        .login-input input{
+            text-align: center;
+            font-family: inherit;
+            margin-top: 5rem;
+            font-size: 2.6rem;
+            height: 4rem;
+            width: 100%;
+            text-transform: capitalize;
+        }
+        button{
+            font-family: inherit;
+            width: 100%;
+            height: 4rem;
+            background-color: colors(primary);
+            color: white;
+            display: block;
+            margin: 1em auto 0 auto;
+            font-size: 1.2em;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            border: 2px solid black;
+            transition: 0.3s;
+        }
+        
+        button:hover{
+            background-color: colors(secondary);
+        }
+    }
+}
+
+
