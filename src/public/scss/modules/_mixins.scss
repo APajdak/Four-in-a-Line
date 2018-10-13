@@ -4,6 +4,21 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 13rem;
-    width: 13rem;
+    height: 8vw;
+    width: 8vw;
+    @include small{        
+        height: 12vw;
+        width: 12vw;
+    }
+}
+@mixin small{
+    @media (max-width: $small){
+        @content;
+    }
+}
+
+@mixin large{
+    @media (min-width: $large){
+        @content;
+    }
 }
