@@ -75,5 +75,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }, 100);
     }
     getRandomCol();
+    document.querySelector('a').addEventListener('click', function(e){
+        if(!document.querySelector('input').value){
+            e.preventDefault();
+            return;
+        }else{
+            document.querySelector('a').setAttribute('href', `/rooms/${document.querySelector('input').value}`)
+        }
+    })
 })
 

@@ -23,21 +23,32 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(publicPath));
 
 let users = new Users;
+users.addUser(1, 'Andrew', 'someRoomName', 'red');
+users.addUser(2, 'John', 'someRoomName', 'black');
+users.addUser(3, 'Bryan', 'someRoomName1', 'red');
+users.addUser(4, 'Ann', 'someRoomName1', 'black');
+users.addUser(5, 'Donald', 'someRoomName2', 'red');
+users.addUser(6, 'Paris', 'someRoomName3', 'red');
 
 app.get('/', (req, res)=>{
-    res.render('login.hbs');
+    res.render('login.hbs', {
+        title: 'Four-in-a-line Login',
+        loadBackground: true,
+    });
 });    
 
 app.get('/rooms/:username', (req,res)=>{
     res.render('rooms.hbs',{
+        title: 'Four-in-a-line Rooms',
         userName: req.params.username,
+        loadAjax: true
     });
 
 });
 
 app.get('/getrooms', (req, res)=>{
     res.send({
-        hello: 'Siema'
+        hello: users.roomsAndUsers
     })
 });
 
@@ -46,10 +57,6 @@ app.get('/game/:roomName', (req, res)=>{
 
     res.render('game.hbs', room);
 });
-
-
-
-
 
 io.on('connection', socket =>{
 
