@@ -5,6 +5,7 @@ const socketIO = require('socket.io');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const {Users} = require('./utils/users');
+const hbs_helper = require('./utils/hbsHelper');
 
 const viewPath = path.join(__dirname, '/../views')
 const publicPath = path.join(__dirname, '/../public')
@@ -15,6 +16,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 
 hbs.registerPartials(viewPath + '/partials');
+hbs.registerHelper('ifCond', hbs_helper);
 app.set('views', viewPath);
 app.set('view engine', hbs);
 app.use(bodyParser.json());
@@ -41,7 +43,8 @@ app.get('/rooms/:username', (req,res)=>{
     res.render('rooms.hbs',{
         title: 'Four-in-a-line Rooms',
         userName: req.params.username,
-        loadAjax: true
+        loadAjax: true,
+        rooms: users.roomsAndUsers
     });
 
 });

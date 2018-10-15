@@ -5,3 +5,14 @@
 *{
     font-family: 'Courier New', Courier, monospace;
 }
+@keyframes scrollTop{
+    0%{
+        transform: rotate(0) translateY(-120px);
+        opacity: 0;
+        }
+    100%{
+        transform: rotate(00) translateY(0);
+        opacity: 1;
+        }
+}
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

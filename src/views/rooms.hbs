@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-{{> head}}
-<body>
-    <header>
-        <h1>Four-in-a-Line</h1>
-        <span>Your name: {{userName}}</span>
-    </header>
-    <div>
-        <div>
-            <span>Rooms</span>
-            <div>
-                <span>Player1</span>
-                <span>Player2</span>
-                <button id="reload">reload</button>
-            </div>
-            <div>
-                <span>{{userName}}</span>
-                <span>Andrew</span>
-                <span>
-                    <button>join</button>
-                </span>
-            </div>
-            <div>
-                <span>{{userName}}</span>
-                <span>Andrew</span>
-                <span>
-                    Full
-                </span>
-            </div>
+    {{> head}}
+    <body>
+       {{> header}}
+        <section class="wrapper">
 
-        </div>
-    </div>
-</body>
+            <table>
+                    <caption>Rooms</caption>
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                Players
+                            </th>
+                            <th>
+                                <button id="reload">Refresh</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each rooms as |value key|}}
+                        
+                            {{#ifCond this.users.length '==' 2}}
+                                <tr>
+                                    {{#each this.users}}
+                                        <td>
+                                            {{this}}
+                                        </td>
+                                    {{/each}} 
+                                    <td>
+                                         <i class="full"></i>
+                                    </td>
+                                </tr>
+                            {{else}}
+                                <tr>
+                                    
+                                    {{#each this.users}}
+                                        <td>
+                                            {{this}}
+                                        </td>
+                                    {{/each}}
+                                    <td>
+                                        -
+                                    </td> 
+                                    <td>
+                                        
+                                        
+                                       <a href="/game/{{ value.room }}"><button>join &rarr;</button></a> 
+                                    </td>    
+                                </tr>  
+                            {{/ifCond}}
+                        {{/each}}
+                    </tbody>
+                </table>
+        </section>
+    </body>
 </html>
