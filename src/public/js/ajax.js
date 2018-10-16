@@ -35,7 +35,6 @@ $(function(){
 				}
 				$('tbody').append($tr);
 			}
-
 		}
 		
 });

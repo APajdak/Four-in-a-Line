@@ -57,13 +57,7 @@ section.wrapper{
                 width: 1.7rem;
             }
 
-            tr{
-                &:last-child{
-                    td{
-                        border-bottom: none;
-                    }
-                }
-            }
+     
             button{
     
                 border: 2px solid black;
@@ -72,11 +66,37 @@ section.wrapper{
                 font-size: 2rem;
                 padding: 5px 10px;
                 background-color: colors(primary);
-                text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+                @include text-shadow();
                 transition: 0.3s;
     
                 &:hover{
                     background-color: colors(secondary);
+                }
+            }
+        }
+
+
+        tfoot{
+            #createRoom{
+                text-transform: uppercase;
+                border: none;
+                color: white;
+                background-color: colors(secondary);
+                border: 2px solid black;
+                border-radius: 2px;
+                padding: .5rem 2rem;
+                font-family: inherit;
+                font-size: 2rem;
+                @include text-shadow();
+                transition: 0.3s;
+                font-weight: bold;
+                &:hover{
+                    background-color: lighten(colors(primary), 10%);
+                }
+            }
+            &:last-child{
+                td{
+                    border-bottom: none;
                 }
             }
         } 

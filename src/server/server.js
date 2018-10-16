@@ -6,6 +6,7 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const {Users} = require('./utils/users');
 const hbs_helper = require('./utils/hbsHelper');
+const randomHash = require('./utils/randomHash');
 
 const viewPath = path.join(__dirname, '/../views')
 const publicPath = path.join(__dirname, '/../public')
@@ -50,12 +51,14 @@ app.get('/rooms/:username', (req,res)=>{
 });
 
 app.get('/getrooms', (req, res)=>{
-    users.addUser(7, 'Meg', 'someRoomName4', 'red');
-    users.addUser(8, 'Peter', 'someRoomName5', 'red');
-    users.addUser(9, 'Chris', 'someRoomName5', 'black');
     res.send({
         users: users.roomsAndUsers
     })
+});
+
+app.get('/createRoom', (res,req) => {
+
+
 });
 
 app.get('/game/:roomName', (req, res)=>{
