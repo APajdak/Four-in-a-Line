@@ -33,7 +33,6 @@
                                 </tr>
                             {{else}}
                                 <tr>
-                                    
                                     {{#each this.users}}
                                         <td>
                                             {{this}}
@@ -50,7 +49,13 @@
                                 </tr>  
                             {{/ifCond}}
                         {{/each}}
+                        
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"> <button id="createRoom">Create new room</button></td>
+                        </tr>
+                    </tfoot>
                 </table>
         </section>
     </body>

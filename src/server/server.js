@@ -50,8 +50,11 @@ app.get('/rooms/:username', (req,res)=>{
 });
 
 app.get('/getrooms', (req, res)=>{
+    users.addUser(7, 'Meg', 'someRoomName4', 'red');
+    users.addUser(8, 'Peter', 'someRoomName5', 'red');
+    users.addUser(9, 'Chris', 'someRoomName5', 'black');
     res.send({
-        hello: users.roomsAndUsers
+        users: users.roomsAndUsers
     })
 });
 
