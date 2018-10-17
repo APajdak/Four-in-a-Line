@@ -1,12 +1,11 @@
 $(function(){
-	
   $('#reload').click(function(){
 			$('tbody').empty();
 
 		$.ajax({
 			url:	'/getrooms',
 			type:	'GET',
-					dataType:	'json'
+			dataType:	'json'
 			}).done(function(response){
 					refreshTable(response.users);
 			}).fail(function(error){
@@ -36,5 +35,19 @@ $(function(){
 				$('tbody').append($tr);
 			}
 		}
+
+		
+
+		$('#createRoom').on('click', function(){
+			let userName = $('#userName').html();
+			$.ajax({
+				url:	`/createRoom`,
+				type:	'POST',
+				}).done(function(response){
+						window.location.assign(`/game/${response.room}/${userName}`);
+				}).fail(function(error){
+						console.log(error);
+				});
+		})
 		
 });

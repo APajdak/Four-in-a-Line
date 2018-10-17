@@ -7,7 +7,7 @@ class Users {
     addUser(id, name, room, color = ''){
         let user = {id, name, room, color};
         if(this.rooms.indexOf(room) < 0){
-            this.rooms.push(room);
+            // this.rooms.push(room);
             this.roomsAndUsers.push({room: room, users: [name]})
         }else{
             this.setRoomsAndUsers(name, room);
@@ -55,7 +55,6 @@ class Users {
     getRoom (roomName){   
         return this.roomsAndUsers.filter( room => room.room == roomName)[0];
     }
-
 }
 
 module.exports = {Users}

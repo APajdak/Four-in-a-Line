@@ -7,6 +7,10 @@
     {{#if loadBackground}}
         <script src="js/board.js"></script>
     {{/if}}
+    {{#if loadGame}}
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./../../js/app.js"></script>
+    {{/if}}
     {{#if loadAjax}}
          <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
