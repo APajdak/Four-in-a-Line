@@ -69,19 +69,28 @@ let roomMid = (req, res, next)=>{
 }
 
 app.get('/game/:roomName/:userName', roomMid , (req, res)=>{
-    console.log(req.params);
     res.render('game.hbs', {
         title: 'gierka',
         roomName: req.params.roomName,
-        //userName: req.params.userName,
+        userName: req.params.userName,
         loadGame: true,
     });
 });
 
 io.on('connection', (socket) =>{
-    console.log("ehehqw");
+
+    socket.on('join', data=>{
+        users.addUser(socket.id, data.user, data.room ,data.color)
+        console.log(users);
+        console.log(users.roomsAndUsers);
+    })
+
+    socket.on('message', data=>{
+        console.log(data);
+    })
+    
     socket.on('disconnect', ()=>{
-        console.log('socket');
+        console.log('disconnect');
     });
 
 });

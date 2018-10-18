@@ -18,38 +18,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each rooms as |value key|}}
-                        
-                            {{#ifCond this.users.length '==' 2}}
-                                <tr>
-                                    {{#each this.users}}
+                        {{#if rooms}}
+                            {{#each rooms as |value key|}}
+                            
+                                {{#ifCond this.users.length '==' 2}}
+                                    <tr>
+                                        {{#each this.users}}
+                                            <td>
+                                                {{this}}
+                                            </td>
+                                        {{/each}} 
                                         <td>
-                                            {{this}}
+                                            <i class="full"></i>
                                         </td>
-                                    {{/each}} 
-                                    <td>
-                                         <i class="full"></i>
-                                    </td>
-                                </tr>
+                                    </tr>
+                                {{else}}
+                                    <tr>
+                                        {{#each this.users}}
+                                            <td>
+                                                {{this}}
+                                            </td>
+                                        {{/each}}
+                                        <td>
+                                            -
+                                        </td> 
+                                        <td>
+                                            
+                                            
+                                        <a href="/game/{{ value.room }}"><button>join &rarr;</button></a> 
+                                        </td>    
+                                    </tr>  
+                                {{/ifCond}}
+                            {{/each}}
                             {{else}}
-                                <tr>
-                                    {{#each this.users}}
-                                        <td>
-                                            {{this}}
-                                        </td>
-                                    {{/each}}
-                                    <td>
-                                        -
-                                    </td> 
-                                    <td>
-                                        
-                                        
-                                       <a href="/game/{{ value.room }}"><button>join &rarr;</button></a> 
-                                    </td>    
-                                </tr>  
-                            {{/ifCond}}
-                        {{/each}}
-                        
+                            <tr>
+                                <td colspan="3"> No active games</td>
+                            </tr>
+                            {{/if}}
                     </tbody>
                     <tfoot>
                         <tr>

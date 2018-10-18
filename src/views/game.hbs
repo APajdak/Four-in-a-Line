@@ -2,6 +2,33 @@
 <html lang="en">
 {{> head}}
 <body>
-    sadas
+    <dialog open>
+        <span>choose color</span>
+        <div id="coins">
+            <div id="red"></div>
+            <div id="yellow"></div>
+        </div>
+    </dialog>
+    <div id="game">
+        <div id="info">
+            <span id="room">{{roomName}}</span>   
+            <span id="user">{{userName}}</span>
+        </div>
+        <div id="score-board">
+            <div id="player1">Player 1</div>
+            <div id="socre">0 - 2</div>
+            <div id="player2">Player 2</div>
+        </div>
+        <aside id="chat-window">
+            <form id="sendMessage">
+                <input type="text" id="message" placeholder="Say something" autocomplete="off"/>
+            </form>
+        </aside>
+        <article id="game-board">
+            <section id="board">
+
+            </section>
+        </article>
+    </div>
 </body>
 </html>

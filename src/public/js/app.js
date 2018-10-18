@@ -1,4 +1,42 @@
-const socket = io();
+document.addEventListener('DOMContentLoaded', ()=>{
+    const socket = io();
+
+    let data = {
+        user: document.querySelector('#user').innerHTML,
+        room: document.querySelector('#room').innerHTML
+    }
+
+    document.querySelector('#sendMessage').addEventListener('submit', sendMessage);
+    let colors = document.querySelector('#coins').children;
+    (function(){
+        for (let i = 0; i < colors.length; i++) {
+            colors[i].addEventListener('click', function(){
+                socket.emit('join', {
+                    user: data.user,
+                    room: data.room,
+                    color: this.id
+                });
+                this.parentNode.parentNode.close();
+            })
+            
+        }
+    })();
+    
+    function sendMessage(e){
+        e.preventDefault();
+
+        socket.emit('message', {
+           message: document.querySelector('#message').value,
+           user: data.user,
+           room: data.room
+        });
+        document.querySelector('#message').value = "";
+    }
+
+
+
+})
+
 
 // class fourInALine{
 //     constructor(){
@@ -77,7 +115,7 @@ const socket = io();
 // })
 
 
-window.addEventListener('beforeunload', (e)=>{
-    e.preventDefault();
-    e.returnValue = '';
-});
+// window.addEventListener('beforeunload', (e)=>{
+//     e.preventDefault();
+//     e.returnValue = '';
+// });
