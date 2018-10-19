@@ -11,11 +11,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
     (function(){
         for (let i = 0; i < colors.length; i++) {
             colors[i].addEventListener('click', function(){
+                data.color = this.id;
                 socket.emit('join', {
                     user: data.user,
                     room: data.room,
                     color: this.id
                 });
+
                 this.parentNode.parentNode.close();
             })
             
@@ -24,14 +26,29 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
     function sendMessage(e){
         e.preventDefault();
-
         socket.emit('message', {
            message: document.querySelector('#message').value,
            user: data.user,
-           room: data.room
+           room: data.room,
+           color: data.color
         });
         document.querySelector('#message').value = "";
     }
+
+    socket.on('message', data=>{
+        let div = document.createElement('div');
+        div.classList.add(`msg`, `${data.color}-msg`);
+        let h4 = document.createElement('h4');
+        h4.innerText = data.from;
+        let span = document.createElement('span');
+        span.innerText = data.msg;
+
+        div.appendChild(h4);
+        div.appendChild(span);
+        let chat = document.querySelector('#chat-window');
+        chat.appendChild(div);
+
+    })
 
 
 

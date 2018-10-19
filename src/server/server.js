@@ -5,6 +5,7 @@ const socketIO = require('socket.io');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const {Users} = require('./utils/users');
+const {stringValidation} = require('./utils/validation');
 const hbs_helper = require('./utils/hbsHelper');
 const randomHash = require('./utils/randomHash');
 
@@ -36,6 +37,7 @@ app.get('/', (req, res)=>{
 
 
 app.get('/rooms/:username', (req,res)=>{
+
     res.render('rooms.hbs',{
         title: 'Four-in-a-line Rooms',
         userName: req.params.username,
@@ -81,17 +83,24 @@ io.on('connection', (socket) =>{
 
     socket.on('join', data=>{
         users.addUser(socket.id, data.user, data.room ,data.color);
+        socket.join(data.room);
         console.log(users.roomsAndUsers);
     })
 
-    socket.on('message', data=>{
-        console.log(data);
+    socket.on('message', data => {
+        if(!stringValidation(data.message)) 
+            return false;
+            
+        io.in(data.room).emit('message',{
+            from: data.user,
+            msg: data.message,
+            color: data.color,
+        })
     })
     
     socket.on('disconnect', ()=>{
         let user = users.removeUser(socket.id);
         if(user){
-            console.log("wyszedl");
             console.log(users.roomsAndUsers);
             console.log(users.rooms);
         }
