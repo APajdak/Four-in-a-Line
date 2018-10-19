@@ -6,17 +6,17 @@ class Users {
     }
     addUser(id, name, room, color = ''){
         let user = {id, name, room, color};
+        this.users.push(user);
         this.joinRoom(name, room)
         return user;
     }
 
     joinRoom(name, room){
-        let isExist = this.roomsAndUsers = this.roomsAndUsers.filter( roomName => roomName.room == room);
+        let isExist = this.roomsAndUsers.filter( roomName => roomName.room == room);
         if(!isExist.length){
             this.roomsAndUsers.push({room: room, users: [name]})
         }else{
             isExist[0].users.push(name);
-            //this.setRoomsAndUsers(name, room);
         }
     }
 
@@ -37,14 +37,6 @@ class Users {
         }
         return user;
     }
-
-    // setRoomsAndUsers(name, room){   
-    //     this.roomsAndUsers.map( elem => {
-    //         if(elem.room == room){
-    //             elem.users.push(name); 
-    //         }
-    //     });
-    // }
 
     updateRooms(room, user){
         let userIndex = room.users.indexOf(user);

@@ -80,8 +80,7 @@ app.get('/game/:roomName/:userName', roomMid , (req, res)=>{
 io.on('connection', (socket) =>{
 
     socket.on('join', data=>{
-        users.addUser(socket.id, data.user, data.room ,data.color)
-        console.log(users);
+        users.addUser(socket.id, data.user, data.room ,data.color);
         console.log(users.roomsAndUsers);
     })
 
@@ -90,7 +89,12 @@ io.on('connection', (socket) =>{
     })
     
     socket.on('disconnect', ()=>{
-        console.log('disconnect');
+        let user = users.removeUser(socket.id);
+        if(user){
+            console.log("wyszedl");
+            console.log(users.roomsAndUsers);
+            console.log(users.rooms);
+        }
     });
 
 });

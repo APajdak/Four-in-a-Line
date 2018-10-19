@@ -20,7 +20,6 @@
                     <tbody>
                         {{#if rooms}}
                             {{#each rooms as |value key|}}
-                            
                                 {{#ifCond this.users.length '==' 2}}
                                     <tr>
                                         {{#each this.users}}
@@ -45,7 +44,7 @@
                                         <td>
                                             
                                             
-                                        <a href="/game/{{ value.room }}"><button>join &rarr;</button></a> 
+                                        <a href="/game/{{ value.room }}/"><button>join &rarr;</button></a> 
                                         </td>    
                                     </tr>  
                                 {{/ifCond}}
