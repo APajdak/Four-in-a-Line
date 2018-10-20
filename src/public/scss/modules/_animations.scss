@@ -1,0 +1,20 @@
+@keyframes scrollTop{
+    0%{
+        transform: rotate(0) translateY(-120px);
+        opacity: 0;
+        }
+    100%{
+        transform: rotate(00) translateY(0);
+        opacity: 1;
+        }
+}
+@keyframes chat{
+    0%{
+        transform: rotate(0) translateY(40px);
+        opacity: 0;
+        }
+    100%{
+        transform: rotate(00) translateY(0);
+        opacity: 1;
+        }
+}

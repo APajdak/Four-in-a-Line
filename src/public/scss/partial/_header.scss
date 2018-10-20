@@ -16,10 +16,13 @@ header{
         position: absolute;
         height: 50px;
         width: 50%;
-        font-size: 4rem;
+        font-size: 1.8vw;
         line-height: 50px;
         text-transform: uppercase;
         @include text-shadow();
+        @include small{
+            font-size: 4vw;
+        }
     }
     span{
         position: absolute;

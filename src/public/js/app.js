@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
             
         }
     })();
-    
+    function scrollChatWindow(){
+        document.querySelector('#chat-window').scrollTop = document.querySelector('#chat-window').scrollHeight;
+    }
     function sendMessage(e){
         e.preventDefault();
         socket.emit('message', {
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         div.appendChild(span);
         let chat = document.querySelector('#chat-window');
         chat.appendChild(div);
-
+        scrollChatWindow()
     })
 
 

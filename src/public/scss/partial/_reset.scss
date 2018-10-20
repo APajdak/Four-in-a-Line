@@ -140,3 +140,7 @@ input[type=button] {width: auto; overflow: visible;}
 /* let's clear some floats */
 .clearfix:after { content: " "; display: block; clear: both; }
 html{font-size: 10px}
+body{background-color: rgb(236, 236, 236);}
+*{
+    font-family: 'Courier New', Courier, monospace;
+}
