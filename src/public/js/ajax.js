@@ -8,34 +8,44 @@ $(function(){
 			type:	'GET',
 			dataType:	'json'
 			}).done(function(response){
-					refreshTable(response.users);
+					refreshTable(response);
 			}).fail(function(error){
 					console.log(error);
 			});
 	}); 
 	
 	function refreshTable(users){
+		console.log(users);
 		let $tr;
-		for (let i = 0; i < users.length; i++) {
-			$tr = $('<tr>');
-			if(users[i].users.length == 2){
-				for (let j = 0; j < users[i].users.length; j++) {
-					let $td = $(`<td>${users[i].users[j]}</td>`);
-					$tr.append($td);
+		if(users.length){
+			for (let i = 0; i < users.length; i++) {
+				$tr = $('<tr>');
+				if(users[i].users.length == 2){
+					for (let j = 0; j < users[i].users.length; j++) {
+						let $td = $(`<td>${users[i].users[j]}</td>`);
+						$tr.append($td);
+					}
+					let $full = $('<td>');
+					let $i =	$('<i>', {class: "full"});
+					$full.append($i);
+					$tr.append($full);
+				}else{
+					let $user = $(`<td>${users[i].users[0]}</td>`);
+					let $empty = $(`<td>-</td>`);
+					let $button = $(`<td><a href=/game/${users[i].room}/${userName}><button>Join &rarr;</button</a></td>`);
+					$tr.append($user, $empty, $button);
 				}
-				let $full = $('<td>');
-				let $i =	$('<i>', {class: "full"});
-				$full.append($i);
-				$tr.append($full);
-			}else{
-				let $user = $(`<td>${users[i].users[0]}</td>`);
-				let $empty = $(`<td>-</td>`);
-				let $button = $(`<td><a href=/game/${users[i].room}/${userName}><button>Join &rarr;</button</a></td>`);
-				$tr.append($user, $empty, $button);
+				$('tbody').append($tr);
 			}
+		}else{
+			$tr = $('<tr>');
+			let $td = $('<td colspan="3">No active games</td>');
+			$tr.append($td);
 			$('tbody').append($tr);
 		}
+
 	}
+
 	$('#createRoom').on('click', function(){
 		$.ajax({
 			url:	`/createRoom`,

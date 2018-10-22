@@ -4,7 +4,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-const {Users} = require('./utils/users');
+const {Users, Room, gameRooms} = require('./utils/gameRooms');
 const {stringValidation} = require('./utils/validation');
 const hbs_helper = require('./utils/hbsHelper');
 const randomHash = require('./utils/randomHash');
@@ -17,7 +17,7 @@ let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 
-let users = new Users;
+let room = new gameRooms();
 
 hbs.registerPartials(viewPath + '/partials');
 hbs.registerHelper('ifCond', hbs_helper);
@@ -42,28 +42,28 @@ app.get('/rooms/:username', (req,res)=>{
         title: 'Four-in-a-line Rooms',
         userName: req.params.username,
         loadAjax: true,
-        rooms: users.roomsAndUsers
+        rooms: room.rooms
     });
 
 }); 
 
 app.get('/getrooms', (req, res)=>{
     res.send({
-        users: users.roomsAndUsers
+        rooms: room.rooms
     })
 });
 
 app.post('/createRoom/', (req, res) => {
-    let room = randomHash(15);
-    users.rooms.push(room);
+    let roomName = randomHash(15);
+    room.updateRoomList(roomName, 'add');
     res.send({
-        room: room,
+        room: roomName,
     })
 
 });
 
 let roomMid = (req, res, next)=>{
-    if(users.rooms.indexOf(req.params.roomName) > -1){
+    if(room.roomList.indexOf(req.params.roomName) > -1){
         next();
     }else{
         res.redirect(301, '/');
@@ -82,9 +82,9 @@ app.get('/game/:roomName/:userName', roomMid , (req, res)=>{
 io.on('connection', (socket) =>{
 
     socket.on('join', data=>{
-        users.addUser(socket.id, data.user, data.room ,data.color);
+        room.addRoom(data.room, [socket.id, data.user ,data.color]);
         socket.join(data.room);
-        console.log(users.roomsAndUsers);
+        console.log(room.getRoom(data.room));
     })
 
     socket.on('message', data => {
@@ -99,10 +99,10 @@ io.on('connection', (socket) =>{
     })
     
     socket.on('disconnect', ()=>{
-        let user = users.removeUser(socket.id);
+        let user = room.removerUserFromRoom(socket.id);
         if(user){
-            console.log(users.roomsAndUsers);
-            console.log(users.rooms);
+            console.log(room.roomList);
+            console.log(room.rooms);
         }
     });
 

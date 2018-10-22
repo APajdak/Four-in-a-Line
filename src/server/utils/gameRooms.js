@@ -16,15 +16,18 @@ class gameRooms{
     }
 
     addRoom(room, user){
-        this.updateRoomList(room, 'add');
         if(this.roomList.indexOf(room) > -1){
-            this.rooms.push(new Room(room, new User(...user)));
+            if(this.getRoom(room)){
+                this.addUserToRoom(room, user)
+            }else{
+                this.rooms.push(new Room(room, new User(...user)));
+            }
         }
 
     }
 
     getRoom(roomName){
-        return this.rooms.filter(room => room.room == roomName)[0];
+        return this.rooms.find(room => room.room == roomName);
     }
 
     addUserToRoom(roomName, user){
@@ -37,15 +40,21 @@ class gameRooms{
 
     }
 
-    removerUserFromRoom(roomName, userID){
-        let room = this.getRoom(roomName);
+    removerUserFromRoom(userID){
+        let user;
+        this.rooms.filter(elem => user = elem.users.find(user => user.id == userID))
+        let findRoom = this.rooms.filter(elem => elem.users.find(user => user.id == userID));
+        let room = this.getRoom(findRoom[0].room);
         room.users = room.users.filter(usr => usr.id !== userID);
         if(room.users.length == 0){
             this.rooms = this.rooms.filter(rooms => rooms.room !== room.room);
-            this.roomList = this.roomList.filter(room => room != roomName);
+            this.updateRoomList(room.room, 'delete');
         }
+        return user;
     }
 
 }
 
-module.exports = gameRooms
+let room = new gameRooms();
+
+module.exports = {User, Room, gameRooms}
