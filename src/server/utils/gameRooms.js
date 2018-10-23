@@ -11,7 +11,7 @@ class gameRooms{
         if(option === 'add'){
             this.roomList.push(room);
         }else{
-            this.roomList = this.roomList.filter(room => room !== room);
+            this.roomList = this.roomList.filter(roomName => roomName !== room);
         }
     }
 
@@ -22,6 +22,8 @@ class gameRooms{
             }else{
                 this.rooms.push(new Room(room, new User(...user)));
             }
+        }else{
+            return false;
         }
 
     }
