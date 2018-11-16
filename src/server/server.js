@@ -28,24 +28,30 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(publicPath));
 
+// app.get('/', (req, res)=>{
+//     res.render('login.hbs', {
+//         title: 'Four-in-a-line Login',
+//         loadBackground: true,
+//     });
+// }); 
 app.get('/', (req, res)=>{
-    res.render('login.hbs', {
-        title: 'Four-in-a-line Login',
-        loadBackground: true,
-    });
-}); 
-
-
-app.get('/rooms/:username', (req,res)=>{
-
     res.render('rooms.hbs',{
         title: 'Four-in-a-line Rooms',
-        userName: req.params.username,
+        // userName: req.params.username,
         loadAjax: true,
         rooms: room.rooms
     });
-
 }); 
+
+
+// app.get('/rooms/:username', (req,res)=>{
+//     res.render('rooms.hbs',{
+//         title: 'Four-in-a-line Rooms',
+//         userName: req.params.username,
+//         loadAjax: true,
+//         rooms: room.rooms
+//     });
+// }); 
 
 app.get('/getrooms', (req, res)=>{
     res.send({

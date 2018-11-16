@@ -1,54 +1,54 @@
 const User = require('./user');
 const Room = require('./room');
 
-class gameRooms{
-    constructor(){
+class gameRooms {
+    constructor() {
         this.roomList = [];
         this.rooms = [];
     }
 
-    updateRoomList(room, option){
-        if(option === 'add'){
+    updateRoomList(room, option) {
+        if (option === 'add') {
             this.roomList.push(room);
-        }else{
+        } else {
             this.roomList = this.roomList.filter(roomName => roomName !== room);
         }
     }
 
-    addRoom(room, user){
-        if(this.roomList.indexOf(room) > -1){
-            if(this.getRoom(room)){
+    addRoom(room, user) {
+        if (this.roomList.indexOf(room) > -1) {
+            if (this.getRoom(room)) {
                 this.addUserToRoom(room, user)
-            }else{
+            } else {
                 this.rooms.push(new Room(room, new User(...user)));
             }
-        }else{
+        } else {
             return false;
         }
 
     }
 
-    getRoom(roomName){
+    getRoom(roomName) {
         return this.rooms.find(room => room.room == roomName);
     }
 
-    addUserToRoom(roomName, user){
+    addUserToRoom(roomName, user) {
         let room = this.getRoom(roomName);
-        if(room.users.length < room.max){
+        if (room.users.length < room.max) {
             room.users.push(new User(...user));
-        }else{
+        } else {
             return false;
         }
 
     }
 
-    removerUserFromRoom(userID){
+    removerUserFromRoom(userID) {
         let user;
         this.rooms.filter(elem => user = elem.users.find(user => user.id == userID))
         let findRoom = this.rooms.filter(elem => elem.users.find(user => user.id == userID));
         let room = this.getRoom(findRoom[0].room);
         room.users = room.users.filter(usr => usr.id !== userID);
-        if(room.users.length == 0){
+        if (room.users.length == 0) {
             this.rooms = this.rooms.filter(rooms => rooms.room !== room.room);
             this.updateRoomList(room.room, 'delete');
         }
@@ -59,4 +59,4 @@ class gameRooms{
 
 let room = new gameRooms();
 
-module.exports = {User, Room, gameRooms}
+module.exports = { User, Room, gameRooms }

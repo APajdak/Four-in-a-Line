@@ -4,9 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="./../img/favicon.png">
     <link rel="stylesheet" type="text/css" href="./../css/main.css"> 
-    {{#if loadBackground}}
-        <script src="js/board.js"></script>
-    {{/if}}
     {{#if loadGame}}
         <script src="/socket.io/socket.io.js"></script>
         <script src="./../../js/app.js"></script>
@@ -19,6 +16,7 @@
             crossorigin="anonymous">
             </script>
         <script src="./../js/ajax.js"></script>
+        <script src="./../js/board.js"></script>
     {{/if}}
     <title>{{title}}</title>
 </head>
